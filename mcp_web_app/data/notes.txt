@@ -1,0 +1,4 @@
+Project Notes:
+- Implement user authentication
+- Add database integration
+- Deploy to production
