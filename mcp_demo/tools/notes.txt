@@ -1,0 +1,4 @@
+ws.run_forever()
+This starts the connection loop.
+Meaning:
+“Connect to server and keep listening for messages forever.”
