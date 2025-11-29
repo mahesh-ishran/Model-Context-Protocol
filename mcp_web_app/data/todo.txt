@@ -1,0 +1,4 @@
+Today's Tasks:
+1. Review MCP integration
+2. Test Gemini API
+3. Deploy application
