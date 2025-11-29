@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MCP Web Client</title>
+  <style>
+    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; margin: 18px; background:#f7f8fb; color:#111; }
+    h1 { margin: 0 0 12px 0; font-size: 20px; }
+    .row { display:flex; gap:12px; align-items:center; margin-bottom:10px; }
+    .col { display:flex; flex-direction:column; gap:6px; }
+    input[type="text"], textarea { width: 100%; padding:8px; border-radius:8px; border:1px solid #ddd; background:white; }
+    textarea { min-height: 90px; resize:vertical; font-family: monospace; }
+    button { padding:8px 12px; border-radius:8px; border:0; cursor:pointer; background:#2563eb; color:white; }
+    button.secondary { background:#6b7280; }
+    #log { background: #0b1220; color: #e6eef8; padding: 12px; border-radius:8px; font-family: monospace; white-space: pre-wrap; max-height: 420px; overflow:auto; }
+    label { font-size:12px; color:#374151; }
+    .small { font-size:12px; color:#6b7280; }
+    .flex { display:flex; gap:8px; }
+  </style>
+</head>
+<body>
+  <h1>MCP Web Client (ws://localhost:8765)</h1>
+
+  <div class="row">
+    <div class="col" style="flex:1">
+      <label>Server URL</label>
+      <input id="wsUrl" type="text" value="ws://localhost:8765" />
+      <div class="flex">
+        <button id="connectBtn">Connect</button>
+        <button id="disconnectBtn" class="secondary" disabled>Disconnect</button>
+        <div class="small" id="status">Disconnected</div>
+      </div>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="row">
+    <div style="flex:1;">
+      <label>Tool name</label>
+      <input id="toolName" type="text" placeholder='e.g. run_python or read_file or list_tools' />
+    </div>
+    <div style="flex:1;">
+      <label>Args (JSON)</label>
+      <input id="toolArgs" type="text" placeholder='e.g. {"script":"hello_tool.py","args":["Mahesh","3"]} or {"filepath":"notes.txt"}' />
+    </div>
+    <div style="width:220px;">
+      <label>Send</label>
+      <div class="flex">
+        <button id="callBtn">Call tool</button>
+        <button id="discoverBtn" class="secondary">Discover</button>
+        <button id="listBtn" class="secondary">List tools</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:8px; margin-bottom:8px;">
+    <label>Log / Responses</label>
+    <div id="log">No messages yet.</div>
+  </div>
+
+  <script>
+    (() => {
+      const wsUrlInput = document.getElementById('wsUrl');
+      const connectBtn = document.getElementById('connectBtn');
+      const disconnectBtn = document.getElementById('disconnectBtn');
+      const statusEl = document.getElementById('status');
+      const logEl = document.getElementById('log');
+      const toolNameEl = document.getElementById('toolName');
+      const toolArgsEl = document.getElementById('toolArgs');
+      const callBtn = document.getElementById('callBtn');
+      const discoverBtn = document.getElementById('discoverBtn');
+      const listBtn = document.getElementById('listBtn');
+
+      let ws = null;
+
+      function appendLog(prefix, obj) {
+        const time = new Date().toLocaleTimeString();
+        const text = typeof obj === 'string' ? obj : JSON.stringify(obj, null, 2);
+        if (logEl.textContent === 'No messages yet.') logEl.textContent = '';
+        logEl.textContent += `[${time}] ${prefix}\n${text}\n\n`;
+        logEl.scrollTop = logEl.scrollHeight;
+      }
+
+      function setStatus(s, color) {
+        statusEl.textContent = s;
+        statusEl.style.color = color || '#111';
+      }
+
+      function makeId() {
+        // simple unique id (not RFC uuid) good enough for demo
+        return Math.random().toString(36).slice(2,10) + '-' + Date.now().toString(36);
+      }
+
+      connectBtn.addEventListener('click', () => {
+        const url = wsUrlInput.value.trim();
+        if (!url) return alert('Enter WebSocket URL');
+        if (ws) {
+          alert('Already connected');
+          return;
+        }
+
+        ws = new WebSocket(url);
+
+        ws.onopen = () => {
+          setStatus('Connected', '#059669');
+          connectBtn.disabled = true;
+          disconnectBtn.disabled = false;
+          appendLog('SYSTEM', `Connected to ${url}`);
+        };
+
+        ws.onmessage = (evt) => {
+          let data = evt.data;
+          // may be text; try parse JSON for nice display
+          try {
+            const parsed = JSON.parse(data);
+            appendLog('RECV', parsed);
+          } catch (e) {
+            appendLog('RECV', data);
+          }
+        };
+
+        ws.onerror = (err) => {
+          appendLog('ERROR', String(err));
+          setStatus('Error', '#b91c1c');
+        };
+
+        ws.onclose = (ev) => {
+          appendLog('SYSTEM', `Disconnected (code=${ev.code})`);
+          setStatus('Disconnected', '#6b7280');
+          connectBtn.disabled = false;
+          disconnectBtn.disabled = true;
+          ws = null;
+        };
+      });
+
+      disconnectBtn.addEventListener('click', () => {
+        if (!ws) return;
+        ws.close();
+        ws = null;
+        setStatus('Disconnected', '#6b7280');
+        connectBtn.disabled = false;
+        disconnectBtn.disabled = true;
+      });
+
+      discoverBtn.addEventListener('click', () => {
+        if (!ws || ws.readyState !== WebSocket.OPEN) return alert('Not connected');
+        const msg = { id: makeId(), type: 'discover' };
+        ws.send(JSON.stringify(msg));
+        appendLog('SENT', msg);
+      });
+
+      listBtn.addEventListener('click', () => {
+        if (!ws || ws.readyState !== WebSocket.OPEN) return alert('Not connected');
+        const msg = { id: makeId(), type: 'call_tool', tool: 'list_tools', args: {} };
+        ws.send(JSON.stringify(msg));
+        appendLog('SENT', msg);
+      });
+
+      callBtn.addEventListener('click', () => {
+        if (!ws || ws.readyState !== WebSocket.OPEN) return alert('Not connected');
+        const tool = toolNameEl.value.trim();
+        if (!tool) return alert('Enter tool name');
+        let args = {};
+        const raw = toolArgsEl.value.trim();
+        if (raw) {
+          try {
+            args = JSON.parse(raw);
+          } catch (e) {
+            return alert('Args must be valid JSON (e.g. {"script":"hello_tool.py","args":["Mahesh","3"]})');
+          }
+        }
+
+        const msg = { id: makeId(), type: 'call_tool', tool, args };
+        ws.send(JSON.stringify(msg));
+        appendLog('SENT', msg);
+      });
+
+      // small convenience: double-click tool input to fill example
+      toolNameEl.addEventListener('dblclick', () => {
+        toolNameEl.value = 'run_python';
+        toolArgsEl.value = '{"script":"hello_tool.py","args":["Mahesh","3"]}';
+      });
+
+    })();
+  </script>
+</body>
+</html>
