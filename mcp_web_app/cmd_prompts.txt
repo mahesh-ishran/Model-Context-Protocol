@@ -1,0 +1,482 @@
+Microsoft Windows [Version 10.0.26200.7171]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\asus>cd Downloads
+
+C:\Users\asus\Downloads>mkdir mcp_web_app
+
+C:\Users\asus\Downloads>cd mcp_web_app
+
+C:\Users\asus\Downloads\mcp_web_app>npm init -y
+Wrote to C:\Users\asus\Downloads\mcp_web_app\package.json:
+
+{
+  "name": "mcp_web_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
+
+
+
+
+C:\Users\asus\Downloads\mcp_web_app>node server.js
+node:internal/modules/cjs/loader:1424
+  throw err;
+  ^
+
+Error: Cannot find module '@google/generative-ai'
+Require stack:
+- C:\Users\asus\Downloads\mcp_web_app\server.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)
+    at Module._load (node:internal/modules/cjs/loader:1227:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)
+    at Module.require (node:internal/modules/cjs/loader:1504:12)
+    at require (node:internal/modules/helpers:152:16)
+    at Object.<anonymous> (C:\Users\asus\Downloads\mcp_web_app\server.js:3:32)
+    at Module._compile (node:internal/modules/cjs/loader:1761:14) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ 'C:\\Users\\asus\\Downloads\\mcp_web_app\\server.js' ]
+}
+
+Node.js v24.11.1
+
+C:\Users\asus\Downloads\mcp_web_app>node server.js
+[dotenv@17.2.3] injecting env (2) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+🔌 Initializing MCP connections...
+Secure MCP Filesystem Server running on stdio
+✅ Connected to Filesystem MCP Server
+Client does not support MCP Roots, using allowed directories set from server args: [ 'C:\\Users\\asus\\Downloads\\mcp_web_app\\data' ]
+Starting default (STDIO) server...
+Starting logs update interval
+✅ Connected to Calculator MCP Server
+📦 Available MCP Tools: read_file, read_text_file, read_media_file, read_multiple_files, write_file, edit_file, create_directory, list_directory, list_directory_with_sizes, directory_tree, move_file, search_files, get_file_info, list_allowed_directories, echo, add, longRunningOperation, printEnv, sampleLLM, getTinyImage, annotatedMessage, getResourceReference, getResourceLinks, structuredContent
+✨ MCP initialization complete!
+
+🚀 Server running at http://localhost:3000
+🤖 AI Provider: Google Gemini
+📊 Health check: http://localhost:3000/api/health
+🔧 Available tools: http://localhost:3000/api/tools
+
+✨ Ready to chat! Open your browser and start chatting.
+
+
+💬 User: hi i am mahesh!!
+❌ Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] * GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[paths].items: missing field.
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[edits].items: missing field.
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[excludePatterns].items: missing field.
+
+    at handleResponseNotOk (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:434:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:403:9)
+    at async generateContent (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async ChatSession.sendMessage (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:1210:9)
+    at async C:\Users\asus\Downloads\mcp_web_app\server.js:190:18 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: undefined
+}
+
+💬 User: What files are in my data folder?
+❌ Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] * GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[paths].items: missing field.
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[edits].items: missing field.
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[excludePatterns].items: missing field.
+
+    at handleResponseNotOk (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:434:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:403:9)
+    at async generateContent (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async ChatSession.sendMessage (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:1210:9)
+    at async C:\Users\asus\Downloads\mcp_web_app\server.js:190:18 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: undefined
+}
+
+💬 User: What files are in my data folder?
+❌ Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [400 Bad Request] * GenerateContentRequest.tools[0].function_declarations[3].parameters.properties[paths].items: missing field.
+* GenerateContentRequest.tools[0].function_declarations[5].parameters.properties[edits].items: missing field.
+* GenerateContentRequest.tools[0].function_declarations[11].parameters.properties[excludePatterns].items: missing field.
+
+    at handleResponseNotOk (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:434:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:403:9)
+    at async generateContent (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async ChatSession.sendMessage (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:1210:9)
+    at async C:\Users\asus\Downloads\mcp_web_app\server.js:190:18 {
+  status: 400,
+  statusText: 'Bad Request',
+  errorDetails: undefined
+}
+^C
+C:\Users\asus\Downloads\mcp_web_app>clear
+'clear' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\asus\Downloads\mcp_web_app>node server.js
+[dotenv@17.2.3] injecting env (2) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+🔌 Initializing MCP connections...
+Secure MCP Filesystem Server running on stdio
+✅ Connected to Filesystem MCP Server
+Client does not support MCP Roots, using allowed directories set from server args: [ 'C:\\Users\\asus\\Downloads\\mcp_web_app\\data' ]
+Starting default (STDIO) server...
+Starting logs update interval
+✅ Connected to Calculator MCP Server
+📦 Available MCP Tools: read_file, read_text_file, read_media_file, read_multiple_files, write_file, edit_file, create_directory, list_directory, list_directory_with_sizes, directory_tree, move_file, search_files, get_file_info, list_allowed_directories, echo, add, longRunningOperation, printEnv, sampleLLM, getTinyImage, annotatedMessage, getResourceReference, getResourceLinks, structuredContent
+✨ MCP initialization complete!
+
+🚀 Server running at http://localhost:3000
+🤖 AI Provider: Google Gemini
+📊 Health check: http://localhost:3000/api/health
+🔧 Available tools: http://localhost:3000/api/tools
+🐛 Debug schemas: http://localhost:3000/api/debug/schemas
+
+✨ Ready to chat! Open your browser and start chatting.
+
+
+💬 User: What files are in my data folder?
+❌ Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp
+Please retry in 3.40979432s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerMinutePerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-2.0-flash-exp"}},{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count","quotaId":"GenerateContentInputTokensPerModelPerMinute-FreeTier","quotaDimensions":{"location":"global","model":"gemini-2.0-flash-exp"}}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"3s"}]
+    at handleResponseNotOk (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:434:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:403:9)
+    at async generateContent (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async ChatSession.sendMessage (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:1210:9)
+    at async C:\Users\asus\Downloads\mcp_web_app\server.js:232:18 {
+  status: 429,
+  statusText: 'Too Many Requests',
+  errorDetails: [
+    { '@type': 'type.googleapis.com/google.rpc.Help', links: [Array] },
+    {
+      '@type': 'type.googleapis.com/google.rpc.QuotaFailure',
+      violations: [Array]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.RetryInfo',
+      retryDelay: '3s'
+    }
+  ]
+}
+
+💬 User: Calculate 15% tip on $87.50
+❌ Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent: [429 Too Many Requests] You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/usage?tab=rate-limit.
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash-exp
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash-exp
+Please retry in 51.579362423s. [{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_input_token_count","quotaId":"GenerateContentInputTokensPerModelPerMinute-FreeTier","quotaDimensions":{"location":"global","model":"gemini-2.0-flash-exp"}},{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerMinutePerProjectPerModel-FreeTier","quotaDimensions":{"model":"gemini-2.0-flash-exp","location":"global"}}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"51s"}]
+    at handleResponseNotOk (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:434:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async makeRequest (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:403:9)
+    at async generateContent (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:867:22)
+    at async ChatSession.sendMessage (C:\Users\asus\Downloads\mcp_web_app\node_modules\@google\generative-ai\dist\index.js:1210:9)
+    at async C:\Users\asus\Downloads\mcp_web_app\server.js:232:18 {
+  status: 429,
+  statusText: 'Too Many Requests',
+  errorDetails: [
+    { '@type': 'type.googleapis.com/google.rpc.Help', links: [Array] },
+    {
+      '@type': 'type.googleapis.com/google.rpc.QuotaFailure',
+      violations: [Array]
+    },
+    {
+      '@type': 'type.googleapis.com/google.rpc.RetryInfo',
+      retryDelay: '51s'
+    }
+  ]
+}
+^C
+C:\Users\asus\Downloads\mcp_web_app>node server.js
+[dotenv@17.2.3] injecting env (2) from .env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+🔌 Initializing MCP connections...
+Secure MCP Filesystem Server running on stdio
+✅ Connected to Filesystem MCP Server
+Client does not support MCP Roots, using allowed directories set from server args: [ 'C:\\Users\\asus\\Downloads\\mcp_web_app\\data' ]
+Starting default (STDIO) server...
+Starting logs update interval
+✅ Connected to Calculator MCP Server
+📦 Available MCP Tools: read_file, read_text_file, read_media_file, read_multiple_files, write_file, edit_file, create_directory, list_directory, list_directory_with_sizes, directory_tree, move_file, search_files, get_file_info, list_allowed_directories, echo, add, longRunningOperation, printEnv, sampleLLM, getTinyImage, annotatedMessage, getResourceReference, getResourceLinks, structuredContent
+✨ MCP initialization complete!
+
+🚀 Server running at http://localhost:3000
+🤖 AI Provider: OpenAI ChatGPT
+📊 Health check: http://localhost:3000/api/health
+🔧 Available tools: http://localhost:3000/api/tools
+🐛 Debug schemas: http://localhost:3000/api/debug/schemas
+
+✨ Ready to chat! Open your browser and start chatting.
+
+
+💬 User: hi
+❌ Error: AuthenticationError: 401 Incorrect API key provided: AIzaSyDA***********************************************************************************************************************************************************************************************YHEA. You can find your API key at https://platform.openai.com/account/api-keys.
+    at APIError.generate (C:\Users\asus\Downloads\mcp_web_app\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (C:\Users\asus\Downloads\mcp_web_app\node_modules\openai\client.js:165:32)
+    at OpenAI.makeRequest (C:\Users\asus\Downloads\mcp_web_app\node_modules\openai\client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async C:\Users\asus\Downloads\mcp_web_app\server.js:171:20 {
+  status: 401,
+  headers: Headers {
+    date: 'Mon, 17 Nov 2025 11:00:00 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '453',
+    connection: 'keep-alive',
+    vary: 'Origin',
+    'x-request-id': 'req_407e12eab7ae438eaf6ef0ab37a92b2d',
+    'x-envoy-upstream-service-time': '10',
+    'x-openai-proxy-wasm': 'v0.1',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=hIkNIjbhB72DZg4sJcjb4ImABbGlTr8Pojc7VRwOXYA-1763377200-1.0.1.1-rK8W9kG4wiqcModxhC79sg4G6fuwbz6y.fYl9yrGJHllHxUurIip1SRf.zEkeT_W8q6HR.Qy3mdlSC7col6PSzDX4.8K0taxqrG3rwxx2sQ; path=/; expires=Mon, 17-Nov-25 11:30:00 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None, _cfuvid=fOrkrSaM0NtObkeGeURGznwPiM3iodS0vZRGqB66wFI-1763377200725-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+    'x-content-type-options': 'nosniff',
+    server: 'cloudflare',
+    'cf-ray': '99feb8ceac6ab85f-BOM',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  requestID: 'req_407e12eab7ae438eaf6ef0ab37a92b2d',
+  error: {
+    message: 'Incorrect API key provided: AIzaSyDA***********************************************************************************************************************************************************************************************YHEA. You can find your API key at https://platform.openai.com/account/api-keys.',
+    type: 'invalid_request_error',
+    param: null,
+    code: 'invalid_api_key'
+  },
+  code: 'invalid_api_key',
+  param: null,
+  type: 'invalid_request_error'
+}
+
+💬 User: hi
+❌ Error: AuthenticationError: 401 Incorrect API key provided: AIzaSyDA***********************************************************************************************************************************************************************************************YHEA. You can find your API key at https://platform.openai.com/account/api-keys.
+    at APIError.generate (C:\Users\asus\Downloads\mcp_web_app\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (C:\Users\asus\Downloads\mcp_web_app\node_modules\openai\client.js:165:32)
+    at OpenAI.makeRequest (C:\Users\asus\Downloads\mcp_web_app\node_modules\openai\client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async C:\Users\asus\Downloads\mcp_web_app\server.js:171:20 {
+  status: 401,
+  headers: Headers {
+    date: 'Mon, 17 Nov 2025 11:02:18 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '453',
+    connection: 'keep-alive',
+    vary: 'Origin',
+    'x-request-id': 'req_45bf0fe81ec646198d054482b3f92c7c',
+    'x-envoy-upstream-service-time': '11',
+    'x-openai-proxy-wasm': 'v0.1',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=JjIYryks4Ip5PWPIE5zIn_j6AYizBkKuUemGtklQ1kI-1763377338-1.0.1.1-YTAK6F6vDMIJG9RQgLPm6YRDbQxvC5d_Pupi5iDmdNexWO756WWkxKHMetLy7vIGwRxP2MfVIILTel1Kw_VihmHqZUP5DHT7AxHCVJG_wfQ; path=/; expires=Mon, 17-Nov-25 11:32:18 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None, _cfuvid=3hcO1xIK0xe9Uif40T3JXL07RmyAlv2nJhqHFvlZVDI-1763377338871-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+    'x-content-type-options': 'nosniff',
+    server: 'cloudflare',
+    'cf-ray': '99febc2e18ee35d2-BOM',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  requestID: 'req_45bf0fe81ec646198d054482b3f92c7c',
+  error: {
+    message: 'Incorrect API key provided: AIzaSyDA***********************************************************************************************************************************************************************************************YHEA. You can find your API key at https://platform.openai.com/account/api-keys.',
+    type: 'invalid_request_error',
+    param: null,
+    code: 'invalid_api_key'
+  },
+  code: 'invalid_api_key',
+  param: null,
+  type: 'invalid_request_error'
+}
+
+💬 User: jo
+❌ Error: AuthenticationError: 401 Incorrect API key provided: AIzaSyDA***********************************************************************************************************************************************************************************************YHEA. You can find your API key at https://platform.openai.com/account/api-keys.
+    at APIError.generate (C:\Users\asus\Downloads\mcp_web_app\node_modules\openai\core\error.js:48:20)
+    at OpenAI.makeStatusError (C:\Users\asus\Downloads\mcp_web_app\node_modules\openai\client.js:165:32)
+    at OpenAI.makeRequest (C:\Users\asus\Downloads\mcp_web_app\node_modules\openai\client.js:333:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async C:\Users\asus\Downloads\mcp_web_app\server.js:171:20 {
+  status: 401,
+  headers: Headers {
+    date: 'Mon, 17 Nov 2025 11:08:23 GMT',
+    'content-type': 'application/json; charset=utf-8',
+    'content-length': '453',
+    connection: 'keep-alive',
+    vary: 'Origin',
+    'x-request-id': 'req_0f8fe74c82504cdd94ada697b2d15132',
+    'x-envoy-upstream-service-time': '44',
+    'x-openai-proxy-wasm': 'v0.1',
+    'cf-cache-status': 'DYNAMIC',
+    'set-cookie': '__cf_bm=NQjFPEYmuDP1qNrpLT1rvEoUjJ19I0M5wpucaM5QeAw-1763377703-1.0.1.1-aagLsZdijoGepw7sBqz7ljeCOF3_d5PA7jPsQ_AEcYELYuC7r39TsmmkyAerV4TqFJ2ngmmjEJPSmXXymLwCJZI6V.rHioAv_8S6MGNhPzI; path=/; expires=Mon, 17-Nov-25 11:38:23 GMT; domain=.api.openai.com; HttpOnly; Secure; SameSite=None, _cfuvid=zyZmrE8w0r.qImkAowK2u81QZIwuFTte7EPxXAAm43k-1763377703244-0.0.1.1-604800000; path=/; domain=.api.openai.com; HttpOnly; Secure; SameSite=None',
+    'strict-transport-security': 'max-age=31536000; includeSubDomains; preload',
+    'x-content-type-options': 'nosniff',
+    server: 'cloudflare',
+    'cf-ray': '99fec513280b40db-BOM',
+    'alt-svc': 'h3=":443"; ma=86400'
+  },
+  requestID: 'req_0f8fe74c82504cdd94ada697b2d15132',
+  error: {
+    message: 'Incorrect API key provided: AIzaSyDA***********************************************************************************************************************************************************************************************YHEA. You can find your API key at https://platform.openai.com/account/api-keys.',
+    type: 'invalid_request_error',
+    param: null,
+    code: 'invalid_api_key'
+  },
+  code: 'invalid_api_key',
+  param: null,
+  type: 'invalid_request_error'
+}
+^C
+C:\Users\asus\Downloads\mcp_web_app>node server.js
+[dotenv@17.2.3] injecting env (2) from .env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+🔌 Initializing MCP connections...
+Secure MCP Filesystem Server running on stdio
+✅ Connected to Filesystem MCP Server
+Client does not support MCP Roots, using allowed directories set from server args: [ 'C:\\Users\\asus\\Downloads\\mcp_web_app\\data' ]
+Starting default (STDIO) server...
+Starting logs update interval
+✅ Connected to Calculator MCP Server
+📦 Available MCP Tools: read_file, read_text_file, read_media_file, read_multiple_files, write_file, edit_file, create_directory, list_directory, list_directory_with_sizes, directory_tree, move_file, search_files, get_file_info, list_allowed_directories, echo, add, longRunningOperation, printEnv, sampleLLM, getTinyImage, annotatedMessage, getResourceReference, getResourceLinks, structuredContent
+✨ MCP initialization complete!
+
+🚀 Server running at http://localhost:3000
+🤖 AI Provider: OpenAI ChatGPT
+📊 Health check: http://localhost:3000/api/health
+🔧 Available tools: http://localhost:3000/api/tools
+🐛 Debug schemas: http://localhost:3000/api/debug/schemas
+
+✨ Ready to chat! Open your browser and start chatting.
+
+
+💬 User: hi
+🤖 ChatGPT response received
+💬 Assistant: Hello! How can I assist you today?
+
+
+💬 User: Calculate 15% tip on $87.50
+🤖 ChatGPT response received
+💬 Assistant: To calculate a 15% tip on $87.50, you can use the following formula:
+
+\[ \text{Tip} = \text{Total Amount} \times \text{Tip Percentage} \]
+
+\[ \text{Tip} = 87.50 \times 0.15 = 13.125 \]
+
+So, a 15% tip on $87.50 is $13.13 when rounded to two decimal places.
+
+
+💬 User: What files are in my data folder?
+🤖 ChatGPT response received
+🔧 Tool calls detected: 1
+🔧 Calling: list_allowed_directories
+📥 Args: {}
+📤 Result: [
+  {
+    "type": "text",
+    "text": "Allowed directories:\nC:\\Users\\asus\\Downloads\\mcp_web_app\\data"
+  }
+]
+🤖 ChatGPT response received
+🔧 Tool calls detected: 1
+🔧 Calling: list_directory
+📥 Args: {
+  "path": "C:\\Users\\asus\\Downloads\\mcp_web_app\\data"
+}
+📤 Result: [
+  {
+    "type": "text",
+    "text": "[FILE] notes.txt\n[FILE] sample.txt\n[FILE] todo.txt"
+  }
+]
+🤖 ChatGPT response received
+💬 Assistant: Your "data" folder contains the following files:
+
+1. notes.txt
+2. sample.txt
+3. todo.txt
+
+If you need any information or actions related to these files, feel free to let me know!
+
+
+💬 User: Read sample.txt and summarize it
+🤖 ChatGPT response received
+🔧 Tool calls detected: 1
+🔧 Calling: read_text_file
+📥 Args: {
+  "path": "data/sample.txt"
+}
+📤 Result: [
+  {
+    "type": "text",
+    "text": "Hello from MCP! This is a test file.\nMCP allows AI to access this data securely."
+  }
+]
+🤖 ChatGPT response received
+💬 Assistant: The file "sample.txt" contains a brief message:
+
+"Hello from MCP! This is a test file. MCP allows AI to access this data securely."
+
+The content seems to describe MCP's feature of securely allowing AI to access data. If you need further assistance with this file, let me know!
+
+
+💬 User: what 10 divided by 2
+🤖 ChatGPT response received
+💬 Assistant: 10 divided by 2 is 5.
+
+
+💬 User: Calculate 15% tip on $87.50
+🤖 ChatGPT response received
+💬 Assistant: To calculate a 15% tip on $87.50, you can multiply the amount by 0.15:
+
+\[ 87.50 \times 0.15 = 13.125 \]
+
+So, a 15% tip on $87.50 is $13.13 (rounded to the nearest cent).
+
+
+💬 User: What files are in my data folder?
+🤖 ChatGPT response received
+🔧 Tool calls detected: 1
+🔧 Calling: list_allowed_directories
+📥 Args: {}
+📤 Result: [
+  {
+    "type": "text",
+    "text": "Allowed directories:\nC:\\Users\\asus\\Downloads\\mcp_web_app\\data"
+  }
+]
+🤖 ChatGPT response received
+🔧 Tool calls detected: 1
+🔧 Calling: list_directory
+📥 Args: {
+  "path": "C:\\Users\\asus\\Downloads\\mcp_web_app\\data"
+}
+📤 Result: [
+  {
+    "type": "text",
+    "text": "[FILE] notes.txt\n[FILE] sample.txt\n[FILE] todo.txt"
+  }
+]
+🤖 ChatGPT response received
+💬 Assistant: The "data" folder contains the following files:
+
+- notes.txt
+- sample.txt
+- todo.txt
+
+
+💬 User: Calculate 15% tip on $87.50
+🤖 ChatGPT response received
+🔧 Tool calls detected: 1
+🔧 Calling: add
+📥 Args: {
+  "a": 87.5,
+  "b": 13.125
+}
+📤 Result: [
+  {
+    "type": "text",
+    "text": "The sum of 87.5 and 13.125 is 100.625."
+  }
+]
+🤖 ChatGPT response received
+💬 Assistant: A 15% tip on $87.50 is $13.13. Therefore, the total amount including the tip would be $87.50 + $13.13 = $100.63.
